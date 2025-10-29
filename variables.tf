@@ -44,7 +44,7 @@ variable "zone" {
 variable "sku_name" {
   type        = string
   description = "SKU postgresql (Ex: B_Standard_B1ms)"
-  default     = "GP_Standard_D2ds_v4"
+  default     = "GP_Standard_D2ds_v5"
 }
 
 variable "auto_grow_enabled" {
@@ -59,7 +59,7 @@ variable "storage_mb" {
 }
 
 variable "storage_tier" {
-  type        = string
+  type = string
   description = <<DESCRIPTION
   The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. 
   Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. 
