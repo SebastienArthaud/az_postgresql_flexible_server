@@ -44,6 +44,11 @@ resource "azurerm_postgresql_flexible_server" "postgresql_flexible_server" {
     }
   }
 
+  authentication {
+    active_directory_auth_enabled = var.active_directory_auth_enabled
+    tenant_id                     = var.data.azurerm_client_config.current.tenant_id
+  }
+
   tags = var.tags
 
   lifecycle {
@@ -51,6 +56,17 @@ resource "azurerm_postgresql_flexible_server" "postgresql_flexible_server" {
       tags
     ]
   }
+}
+
+
+resource "azurerm_postgresql_flexible_server_active_directory_administrator" "postgresql_entraid_administrator" {
+  count               = var.active_directory_auth_enabled == true ? 1 : 0
+  server_name         = azurerm_postgresql_flexible_server.postgresql_flexible_server.name
+  resource_group_name = var.resource_group_name
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  object_id           = var.postgresql_entraid_administrator_object_id
+  principal_name      = var.postgresql_entraid_administrator_name
+  principal_type      = var.principal_type
 }
 
 

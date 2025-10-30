@@ -59,7 +59,7 @@ variable "storage_mb" {
 }
 
 variable "storage_tier" {
-  type = string
+  type        = string
   description = <<DESCRIPTION
   The name of storage performance tier for IOPS of the PostgreSQL Flexible Server. 
   Possible values are P4, P6, P10, P15,P20, P30,P40, P50,P60, P70 or P80. 
@@ -170,4 +170,41 @@ variable "firewall_rules" {
     }
   DESCRIPTION
   default     = {}
+}
+
+variable "active_directory_auth_enabled" {
+  type        = bool
+  description = "active_directory_auth_enabled"
+  default     = false
+}
+
+variable "postgresql_entraid_administrator_object_id" {
+  type        = string
+  description = <<DESCRIPTION
+  The object ID of a user, service principal or security group 
+  in the Azure Active Directory tenant set as the Flexible Server Admin.
+  Changing this forces a new resource to be created.
+  DESCRIPTION
+
+  default = null
+}
+
+variable "postgresql_entraid_administrator_name" {
+  type        = string
+  description = <<DESCRIPTION
+  The name of Azure Active Directory principal.
+  Changing this forces a new resource to be created
+  If it is a user, the User Principal Name must be specified here.
+  DESCRIPTION
+  default     = null
+}
+
+variable "principal_type" {
+  type        = string
+  description = <<DESCRIPTION
+  The type of Azure Active Directory principal.
+  Possible values are Group, ServicePrincipal and User.
+  Changing this forces a new resource to be created.
+  DESCRIPTION
+  default     = null
 }

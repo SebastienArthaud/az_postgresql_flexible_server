@@ -1,3 +1,5 @@
+data "azurerm_client_config" "current" {}
+
 data "azurerm_subnet" "subnets_to_authorize" {
   for_each             = var.subnet_ids_to_allow != [] ? toset(var.subnet_ids_to_allow) : null
   name                 = reverse(split("/", each.key))[0]

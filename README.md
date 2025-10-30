@@ -26,8 +26,10 @@
 | [azurerm_key_vault_secret.postgresql_database](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret) | resource |
 | [azurerm_key_vault_secret.postgresql_fqdn](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret) | resource |
 | [azurerm_postgresql_flexible_server.postgresql_flexible_server](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server) | resource |
+| [azurerm_postgresql_flexible_server_active_directory_administrator.postgresql_entraid_administrator](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_active_directory_administrator) | resource |
 | [azurerm_postgresql_flexible_server_database.postgresql_flexible_server_databases](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_database) | resource |
 | [azurerm_postgresql_flexible_server_firewall_rule.firewall_rule](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server_firewall_rule) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
 | [azurerm_subnet.subnets_to_authorize](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subnet) | data source |
 
 ## Inputs
@@ -40,6 +42,7 @@
 | <a name="input_name"></a> [name](#input\_name) | Nom du serveur postgresql flexible | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Nom du Resource Group | `string` | n/a | yes |
 | <a name="input_storage_mb"></a> [storage\_mb](#input\_storage\_mb) | Taille du storage en mb | `string` | n/a | yes |
+| <a name="input_active_directory_auth_enabled"></a> [active\_directory\_auth\_enabled](#input\_active\_directory\_auth\_enabled) | active\_directory\_auth\_enabled | `bool` | `false` | no |
 | <a name="input_administrator_login"></a> [administrator\_login](#input\_administrator\_login) | Login admin | `string` | `"postgresqladmin"` | no |
 | <a name="input_auto_grow_enabled"></a> [auto\_grow\_enabled](#input\_auto\_grow\_enabled) | Auto grow storage ? | `bool` | `false` | no |
 | <a name="input_databases"></a> [databases](#input\_databases) | Map de bdd à créer avec le server postgresql | <pre>map(object({<br/>    name      = string<br/>    charset   = optional(string, "utf8mb4")<br/>    collation = optional(string, "utf8mb4_general_ci")<br/>  }))</pre> | `{}` | no |
@@ -48,6 +51,9 @@
 | <a name="input_identity_type"></a> [identity\_type](#input\_identity\_type) | Type identité à activer sur la ressource ('UserAssigned' et 'SystemAssigned' sont les eules valeurs autorisées) | `string` | `"SystemAssigned"` | no |
 | <a name="input_key_vault_id"></a> [key\_vault\_id](#input\_key\_vault\_id) | Key vault ou sera stocké le secret de postgresql | `string` | `null` | no |
 | <a name="input_location"></a> [location](#input\_location) | Localisation | `string` | `"westeurope"` | no |
+| <a name="input_postgresql_entraid_administrator_name"></a> [postgresql\_entraid\_administrator\_name](#input\_postgresql\_entraid\_administrator\_name) | The name of Azure Active Directory principal.<br/>  Changing this forces a new resource to be created<br/>  If it is a user, the User Principal Name must be specified here. | `string` | `null` | no |
+| <a name="input_postgresql_entraid_administrator_object_id"></a> [postgresql\_entraid\_administrator\_object\_id](#input\_postgresql\_entraid\_administrator\_object\_id) | The object ID of a user, service principal or security group <br/>  in the Azure Active Directory tenant set as the Flexible Server Admin.<br/>  Changing this forces a new resource to be created. | `string` | `null` | no |
+| <a name="input_principal_type"></a> [principal\_type](#input\_principal\_type) | The type of Azure Active Directory principal.<br/>  Possible values are Group, ServicePrincipal and User.<br/>  Changing this forces a new resource to be created. | `string` | `null` | no |
 | <a name="input_private_dns_zone_id"></a> [private\_dns\_zone\_id](#input\_private\_dns\_zone\_id) | The ID of the private DNS zone to create the postgresql Flexible Server. Changing this forces a new postgresql Flexible Server to be created. | `string` | `null` | no |
 | <a name="input_private_endpoint_subnet_name"></a> [private\_endpoint\_subnet\_name](#input\_private\_endpoint\_subnet\_name) | Subnet ou sera déployé le private endpoint | `string` | `null` | no |
 | <a name="input_private_endpoint_virtual_network_name"></a> [private\_endpoint\_virtual\_network\_name](#input\_private\_endpoint\_virtual\_network\_name) | VNET ou sera déployé le private endpoint | `string` | `null` | no |
