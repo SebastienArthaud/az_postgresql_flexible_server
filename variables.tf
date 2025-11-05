@@ -172,6 +172,12 @@ variable "firewall_rules" {
   default     = {}
 }
 
+variable "tenant_id" {
+  type        = string
+  description = "Tenant ID variable"
+  default     = "f30ac191-b8b4-45f2-9a9b-e5466cb90c2f"
+}
+
 variable "active_directory_auth_enabled" {
   type        = bool
   description = "active_directory_auth_enabled"
